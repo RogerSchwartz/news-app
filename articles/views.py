@@ -18,7 +18,9 @@ class ArticleListView(LoginRequiredMixin, ListView):
     model = Article
     template_name = 'article_list.html'
 
-
+class CategoriaListView(LoginRequiredMixin, ListView):
+    model = Article
+    template_name = 'categoria_list.html'
 
 class ArticleDetailView(LoginRequiredMixin, DetailView):
     model = Article
@@ -27,7 +29,7 @@ class ArticleDetailView(LoginRequiredMixin, DetailView):
 
 class ArticleUpdateView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
     model = Article
-    fields = ('title', 'body',)
+    fields = ('title', 'body','categoria',)
     template_name = 'article_edit.html'
 
     def test_func(self):
@@ -48,7 +50,7 @@ class ArticleDeleteView(LoginRequiredMixin,UserPassesTestMixin, DeleteView):
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
     template_name = 'article_new.html'
-    fields = ('title', 'body')
+    fields = ('title', 'body','categoria',)
     
     def form_valid(self, form):
         form.instance.author = self.request.user
