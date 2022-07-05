@@ -13,6 +13,7 @@ from environs import Env
 env = Env()
 env.read_env()
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,7 +133,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
 STATIC_ROOT = str(BASE_DIR.joinpath('staticfiles'))
 STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
-os.makedirs(STATIC_TMP, exist_ok=True)
+
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 LOGIN_REDIRECT_URL = 'home'
